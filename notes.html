@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملاحظات | رُقِي for Designing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md fixed top-0 w-full z-50">
+    <a href="index.html" class="text-2xl md:text-3xl font-bold text-indigo-400">رُقِي</a>
+    <ul class="flex gap-6 text-gray-300">
+      <li><a href="index.html#services" class="hover:text-indigo-400 transition">الخدمات</a></li>
+      <li><a href="index.html#about" class="hover:text-indigo-400 transition">عنّا</a></li>
+      <li><a href="index.html#contact" class="hover:text-indigo-400 transition">تواصل</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="h-[50vh] flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-4xl md:text-6xl font-bold text-indigo-400 drop-shadow-lg" data-aos="fade-down">
+      الملاحظات 📝
+    </h1>
+    <p class="mt-4 text-lg md:text-2xl text-gray-300 max-w-2xl" data-aos="fade-up">
+      اكتب ملاحظتك وسنقوم بمراجعتها لتحسين خدماتنا باستمرار.
+    </p>
+  </header>
+
+  <!-- Notes Form -->
+  <section class="py-20 px-8 md:px-20 bg-black/40 flex justify-center">
+    <form class="bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-2xl space-y-6" data-aos="zoom-in">
+      <label for="note" class="block text-lg font-semibold text-indigo-400">ملاحظتك:</label>
+      <textarea id="note" rows="6" placeholder="اكتب ملاحظتك هنا..." class="w-full p-4 rounded-lg bg-gray-900 text-white border border-gray-600 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+      
+      <button type="submit" class="w-full py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold text-lg rounded-lg transition">
+        إرسال الملاحظة
+      </button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-400 border-t border-gray-700">
+    &copy; 2025 رُقِي for Designing - جميع الحقوق محفوظة
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // تنبيه بسيط عند الضغط على زر الإرسال
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const note = document.getElementById("note").value.trim();
+      if (note) {
+        alert("✅ تم إرسال ملاحظتك بنجاح! شكراً لك.");
+        form.reset();
+      } else {
+        alert("⚠ من فضلك اكتب الملاحظة أولاً.");
+      }
+    });
+  </script>
+</body>
+</html>
