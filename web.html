@@ -31,50 +31,61 @@
       <p class="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto">
         نصمم مواقع احترافية متجاوبة تعكس هويتك وتدعم نجاحك الرقمي
       </p>
-      <a href="#pricing" class="mt-8 inline-block px-6 py-3 bg-indigo-500 text-white rounded-full text-lg font-semibold shadow-lg hover:bg-indigo-600 transition">
+      <a href="#calculator" class="mt-8 inline-block px-6 py-3 bg-indigo-500 text-white rounded-full text-lg font-semibold shadow-lg hover:bg-indigo-600 transition">
         اطلب موقعك الآن
       </a>
     </div>
   </section>
 
-  <!-- Pricing Plans -->
-<!-- Pricing Calculator -->
-<section id="pricing" class="py-20 px-6 md:px-20 bg-black/40">
-  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">احسب تكلفة موقعك</h2>
-  
-  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-2xl shadow-lg text-center" data-aos="fade-up">
-    
-    <!-- عدد الصفحات -->
-    <div class="mb-6">
-      <label for="pages" class="block mb-2 text-lg font-semibold">عدد الصفحات</label>
-      <input id="pages" type="number" min="1" value="1" 
-             class="w-full px-4 py-2 rounded-lg text-black" />
-    </div>
-    
-    <!-- نوع الموقع -->
-    <div class="mb-6">
-      <label class="block mb-2 text-lg font-semibold">نوع الموقع</label>
-      <select id="type" class="w-full px-4 py-2 rounded-lg text-black">
-        <option value="html">HTML, CSS, JS</option>
-        <option value="php">PHP + MySQL</option>
-      </select>
-    </div>
-    
-    <!-- السعر -->
-    <div class="mb-6">
-      <p class="text-xl">السعر المبدئي: 
-        <span id="price" class="text-indigo-400 font-bold">3999</span> ج.م
-      </p>
-    </div>
-    
-    <!-- زر واتساب -->
-    <a id="whatsappLink" target="_blank"
-       class="px-6 py-3 bg-green-500 rounded-full font-semibold hover:bg-green-600 transition">
-      اطلب الآن عبر واتساب
-    </a>
+<!-- 🔹 بداية جزء الحاسبة -->
+<section id="calculator" class="bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-lg mx-auto my-12 text-center">
+  <h2 class="text-2xl font-bold text-indigo-400 mb-6">حاسبة سعر الموقع 💻</h2>
+
+  <div class="mb-4 text-right">
+    <label class="block mb-2">عدد الصفحات:</label>
+    <input type="number" id="pages" value="1" min="1"
+      class="w-full p-2 rounded text-black">
   </div>
 
+  <div class="mb-4 text-right">
+    <label class="block mb-2">التقنية المستخدمة:</label>
+    <select id="tech" class="w-full p-2 rounded text-black">
+      <option value="html">HTML, CSS, JS</option>
+      <option value="php">PHP + MySQL</option>
+    </select>
+  </div>
+
+  <button onclick="calculatePrice()" 
+    class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition">
+    احسب السعر
+  </button>
+
+  <div id="result" class="mt-6 text-xl font-semibold text-green-400"></div>
 </section>
+<!-- 🔹 نهاية جزء الحاسبة -->
+
+<script>
+  function calculatePrice() {
+    let basePrice = 3999; // السعر الأساسي
+    let pages = parseInt(document.getElementById('pages').value);
+    let tech = document.getElementById('tech').value;
+
+    let price = basePrice;
+
+    // زيادة السعر حسب عدد الصفحات (300 جنيه لكل صفحة زيادة)
+    if (pages > 1) {
+      price += (pages - 1) * 300;
+    }
+
+    // لو PHP + MySQL نزود 1000
+    if (tech === "php") {
+      price += 1000; 
+    }
+
+    document.getElementById('result').innerText = "💰 السعر الكلي: " + price + " جنيه";
+  }
+</script>
+
 
 <script>
   const pagesInput = document.getElementById('pages');
