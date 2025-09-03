@@ -4,31 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>التسويق المنتجات - رُقِي</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-  </style>
 </head>
-<body class="text-white font-sans flex items-center justify-center h-screen text-center">
+<body class="bg-gray-900 text-white font-sans">
 
-  <div data-aos="fade-up">
-    <h1 class="text-4xl md:text-6xl font-bold text-indigo-400 mb-6">التسويق المنتجات 📢</h1>
-    <p class="text-lg md:text-2xl text-gray-300">ستظهر العروض هنا</p>
-  </div>
+  <!-- عنوان الصفحة -->
+  <section class="text-center py-10">
+    <h1 class="text-3xl md:text-4xl font-bold text-indigo-400">تسويق المنتجات</h1>
+    <p class="mt-3 text-gray-300">اختر انسب عرض لك</p>
+  </section>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
+  <!-- Cards -->
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-20 pb-20">
+
+    <!-- Card 1 -->
+    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
+      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
+        ✨ اعرض إعلانك أو خدمتك هنا ✨
+      </div>
+      <div class="p-5 text-center">
+        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
+        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
+        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر:</span>
+        <a href="https://wa.me/201008167402" target="_blank"
+           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
+          تواصل عبر واتساب
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
+      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
+        ✨ اعرض إعلانك أو خدمتك هنا ✨
+      </div>
+      <div class="p-5 text-center">
+        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
+        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
+        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر: </span>
+        <a href="https://wa.me/201008167402" target="_blank"
+           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
+          تواصل عبر واتساب
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
+      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
+        ✨ اعرض إعلانك أو خدمتك هنا ✨
+      </div>
+      <div class="p-5 text-center">
+        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
+        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
+        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر:</span>
+        <a href="https://wa.me/201008167402" target="_blank"
+           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
+          تواصل عبر واتساب
+        </a>
+      </div>
+    </div>
+
+  </section>
+
 </body>
 </html>

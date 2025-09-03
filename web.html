@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تصميم مواقع إلكترونية - رُقِي</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
@@ -19,13 +21,123 @@
     }
   </style>
 </head>
-<body class="text-white font-sans flex items-center justify-center h-screen text-center">
+<body class="text-white font-sans">
 
-  <div data-aos="fade-up">
-    <h1 class="text-4xl md:text-6xl font-bold text-indigo-400 mb-6">تصميم مواقع إلكترونية 🌐</h1>
-    <p class="text-lg md:text-2xl text-gray-300">ستظهر المشاريع هنا</p>
+  <!-- Hero -->
+  <section class="relative h-screen flex flex-col items-center justify-center text-center px-6">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10" data-aos="fade-up">
+      <h1 class="text-4xl md:text-6xl font-bold text-indigo-400 mb-6">تصميم مواقع إلكترونية 🌐</h1>
+      <p class="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto">
+        نصمم مواقع احترافية متجاوبة تعكس هويتك وتدعم نجاحك الرقمي
+      </p>
+      <a href="#pricing" class="mt-8 inline-block px-6 py-3 bg-indigo-500 text-white rounded-full text-lg font-semibold shadow-lg hover:bg-indigo-600 transition">
+        اطلب موقعك الآن
+      </a>
+    </div>
+  </section>
+
+  <!-- Pricing Plans -->
+<!-- Pricing Calculator -->
+<section id="pricing" class="py-20 px-6 md:px-20 bg-black/40">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">احسب تكلفة موقعك</h2>
+  
+  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-2xl shadow-lg text-center" data-aos="fade-up">
+    
+    <!-- عدد الصفحات -->
+    <div class="mb-6">
+      <label for="pages" class="block mb-2 text-lg font-semibold">عدد الصفحات</label>
+      <input id="pages" type="number" min="1" value="1" 
+             class="w-full px-4 py-2 rounded-lg text-black" />
+    </div>
+    
+    <!-- نوع الموقع -->
+    <div class="mb-6">
+      <label class="block mb-2 text-lg font-semibold">نوع الموقع</label>
+      <select id="type" class="w-full px-4 py-2 rounded-lg text-black">
+        <option value="html">HTML, CSS, JS</option>
+        <option value="php">PHP + MySQL</option>
+      </select>
+    </div>
+    
+    <!-- السعر -->
+    <div class="mb-6">
+      <p class="text-xl">السعر المبدئي: 
+        <span id="price" class="text-indigo-400 font-bold">3999</span> ج.م
+      </p>
+    </div>
+    
+    <!-- زر واتساب -->
+    <a id="whatsappLink" target="_blank"
+       class="px-6 py-3 bg-green-500 rounded-full font-semibold hover:bg-green-600 transition">
+      اطلب الآن عبر واتساب
+    </a>
   </div>
 
+</section>
+
+<script>
+  const pagesInput = document.getElementById('pages');
+  const typeSelect = document.getElementById('type');
+  const priceSpan = document.getElementById('price');
+  const whatsappLink = document.getElementById('whatsappLink');
+
+  function calcPrice() {
+    let pages = parseInt(pagesInput.value) || 1;
+    let type = typeSelect.value;
+    let basePrice = 3999;
+
+    // زيادة السعر بناءً على عدد الصفحات
+    let price = basePrice + (pages - 1) * 500;
+
+    // لو PHP + MySQL نزود 2000
+    if (type === 'php') {
+      price += 2000;
+    }
+
+    priceSpan.textContent = price;
+
+    // تحديث لينك واتساب
+    let msg = `مرحبًا، عاوز أعمل موقع بعدد ${pages} صفحات باستخدام ${type === 'php' ? 'PHP + MySQL' : 'HTML, CSS, JS'} بسعر ${price} ج.م`;
+    whatsappLink.href = `https://wa.me/201008167402?text=${encodeURIComponent(msg)}`;
+  }
+
+  pagesInput.addEventListener('input', calcPrice);
+  typeSelect.addEventListener('change', calcPrice);
+
+  calcPrice(); // أول تحميل
+</script>
+
+
+  <!-- Portfolio -->
+  <section class="py-20 px-6 md:px-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12">أعمالنا السابقة</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg shadow-md hover:scale-105 transition">مشروع 1</div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg shadow-md hover:scale-105 transition">مشروع 2</div>
+      <div class="bg-gray-800 h-48 flex items-center justify-center rounded-lg shadow-md hover:scale-105 transition">مشروع 3</div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="py-20 px-6 md:px-20 bg-black/40 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12">لماذا تختارنا؟</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-lg text-gray-300">
+      <div class="bg-gray-800 p-6 rounded-xl shadow-md hover:scale-105 transition">🎨 تصميم إبداعي</div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-md hover:scale-105 transition">⚡ سرعة في التنفيذ</div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-md hover:scale-105 transition">💬 دعم متواصل</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">جاهز تبدأ رحلتك الرقمية؟</h2>
+    <a href="https://wa.me/201008167402" target="_blank" class="px-8 py-3 bg-indigo-500 text-white rounded-full text-lg font-semibold shadow-lg hover:bg-indigo-600 transition">
+      تواصل معنا الآن
+    </a>
+  </section>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
