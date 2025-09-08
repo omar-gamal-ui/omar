@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تصميم لوجوهات</title>
+  <title>تصاميم هندسية</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -21,34 +21,34 @@
 </head>
 <body class="text-white font-sans px-6 py-10">
 
-  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم لوجوهات</h1>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصاميم هندسية</h1>
 
-  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="cardsContainer">
-    <!-- الكروت هتظهر هنا -->
-  </div>
+  <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
   <script>
-    const cardsContainer = document.getElementById("cardsContainer");
+    const adsContainer = document.getElementById("adsContainer");
+    const currentCategory = "تصاميم هندسية"; // الفئة اللي تعرضها الصفحة
+
+    // جلب الإعلانات من localStorage
     const ads = JSON.parse(localStorage.getItem("ads")) || [];
 
-    // فلترة الإعلانات الخاصة بفئة "تصميم لوجوهات"
-    const logoAds = ads.filter(ad => ad.subCategory === "تصميم لوجوهات");
+    // تصفية الإعلانات الخاصة بالفئة
+    const filteredAds = ads.filter(ad => ad.subCategory === currentCategory);
 
-    if (logoAds.length === 0) {
-      cardsContainer.innerHTML = '<p class="col-span-full text-center text-gray-400">لا توجد إعلانات حتى الآن.</p>';
-    } else {
-      logoAds.forEach(ad => {
-        const card = document.createElement("div");
-        card.classList.add("bg-gray-800", "p-4", "rounded-2xl", "shadow-lg", "flex", "flex-col", "items-center");
-        card.innerHTML = `
-          <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
-          <h2 class="text-xl font-bold mb-2">${ad.name}</h2>
-          <p class="mb-2"><strong>السعر:</strong> ${ad.price} جنيه</p>
-          <button onclick="window.open('https://wa.me/${ad.phone}','_blank')" class="w-full p-2 bg-green-500 hover:bg-green-600 rounded-lg mt-2">تواصل</button>
-        `;
-        cardsContainer.appendChild(card);
-      });
-    }
+    // عرض كل إعلان في كرت
+    filteredAds.forEach(ad => {
+      const adCard = document.createElement("div");
+      adCard.className = "bg-gray-800 rounded-2xl p-4 shadow-lg flex flex-col items-center text-center";
+
+      adCard.innerHTML = `
+        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h2 class="font-bold text-xl mb-2">${ad.name}</h2>
+        <p class="mb-2">السعر: ${ad.price}</p>
+        <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700">تواصل</a>
+      `;
+
+      adsContainer.appendChild(adCard);
+    });
   </script>
 
 </body>
