@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تصميم منيو مطاعم أو مولات</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-body {
-  background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تصميم منيو</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
 </head>
 <body class="text-white font-sans px-6 py-10">
 
-<h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم منيو مطاعم أو مولات</h1>
-<div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم منيو</h1>
 
-<script>
-const subCategory = "تصميم منيو مطاعم أو مولات";
-const adsContainer = document.getElementById("adsContainer");
-const ads = JSON.parse(localStorage.getItem("ads")) || [];
+  <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-ads.forEach(ad => {
-  if (ad.subCategory === subCategory) {
-    const card =
+  <script>
+    const adsContainer = document.getElementById("adsContainer");
+    const currentCategory = "تصميم منيو مطاعم أو مولات"; // الفئة اللي تعرضها الصفحة
+
+    // جلب الإعلانات من localStorage
+    const ads = JSON.parse(localStorage.getItem("ads")) || [];
+
+    // تصفية الإعلانات الخاصة بالفئة
+    const filteredAds = ads.filter(ad => ad.subCategory === currentCategory);
+
+    // عرض كل إعلان في كرت
+    filteredAds.forEach(ad => {
+      const adCard = document.createElement("div");
+      adCard.className = "bg-gray-800 rounded-2xl p-4 shadow-lg flex flex-col items-center text-center";
+
+      adCard.innerHTML = `
+        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h2 class="font-bold text-xl mb-2">${ad.name}</h2>
+        <p class="mb-2">السعر: ${ad.price}</p>
+        <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700">تواصل</a>
+      `;
+
+      adsContainer.appendChild(adCard);
+    });
+  </script>
+
+</body>
+</html>
