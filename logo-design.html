@@ -1,114 +1,59 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تصميم لوجوهات</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصميم لوجوهات</title>
+<style>
+  body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; margin:0; padding:0; }
+  header { background-color: #1f2937; color: #fff; padding: 20px; text-align: center; }
+  .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+  h2 { text-align: center; margin-bottom: 20px; }
+  .cards-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .card { border: 1px solid #ddd; border-radius: 12px; padding: 20px; background-color: #fff; width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
+  .card h4 { margin: 0 0 10px 0; }
+  .card p { margin: 5px 0; }
+  .card button { background-color: #10b981; color: #fff; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; }
+  .card button:hover { background-color: #059669; }
+</style>
 </head>
-<body class="bg-[#1E1E2E] min-h-screen py-10 px-5">
+<body>
 
-  <!-- العنوان -->
-  <section class="text-center py-10">
-    <h1 class="text-3xl md:text-4xl font-bold text-indigo-400">تصميم لوجوهات</h1>
-    <p class="mt-3 text-gray-300">اختر انسب عرض لك</p>
-  </section>
-  <!-- الكروت -->
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-    
-    <!-- كارت 1 -->
-    <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo1.jpg" alt="تصميم ابراهبم حسين" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">ابراهيم حسين</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 250 ج.م</p>
-        <a href="https://wa.me/201030812585" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
+<header>
+  <h1>تصميم لوجوهات</h1>
+</header>
 
-    <!-- كارت 2 -->
-    <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo2.jpg" alt="تصميم ضحى سلمان" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">ضحى سلمان</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 250 ج.م</p>
-        <a href="https://wa.me/201063129232" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
-
-    <!-- كارت 3 -->
-    <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo3.jpg" alt="شغل شهد شعبان" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">شهد شعبان</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: </p>
-        <a href="https://wa.me/201063129232" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
+<div class="container">
+  <div class="cards-container" id="cardsContainer">
+    <!-- الكروت هتظهر هنا -->
   </div>
-  <selection>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-              <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo4.jpg" alt="تصميم حمزه محمد" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">حمزه محمود</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: </p>
-        <a href="https://wa.me/201007792505" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
+</div>
 
-              <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo5.jpg" alt="جنى حسام" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">جنى حسام</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 220 ج.م</p>
-        <a href="https://wa.me/201158440060" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
-                  <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo6.jpg" alt="زياد عتمان" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">زياد عتمان</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 250 ج.م</p>
-        <a href="https://wa.me/201140372285" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
-        </div>
-  </selection>
-  <selection>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-                            <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/logos/logo7.jpg" alt="محمد حماده" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">محمد حماده</h3>
-        <p class="text-gray-400 text-sm mt-1"></p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 150 ج.م</p>
-        <a href="https://wa.me/201271168639" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
-        </div>
-  </selection>
+<script>
+const sub = "تصميم لوجوهات"; // النوع الفرعي لهذه الصفحة
+const container = document.getElementById('cardsContainer');
+
+// جلب الإعلانات من localStorage
+const ads = JSON.parse(localStorage.getItem(sub)) || [];
+
+if(ads.length === 0){
+  container.innerHTML = '<p style="text-align:center;">لا توجد إعلانات حتى الآن.</p>';
+} else {
+  ads.forEach(ad => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+      <h4>${ad.name}</h4>
+      <img src="${ad.image}" alt="صورة الإعلان">
+      <p><strong>الخدمة الرئيسية:</strong> ${ad.main}</p>
+      <p><strong>السعر:</strong> ${ad.price} جنيه</p>
+      <button onclick="window.open('https://wa.me/${ad.phone}','_blank')">تواصل</button>
+    `;
+    container.appendChild(card);
+  });
+}
+</script>
 
 </body>
 </html>
