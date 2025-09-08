@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تقديم على عمل أو خدمة</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-
+  <title>تقديم على خدمة</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -18,37 +16,110 @@
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
-    .card {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
-    .dropdown { display: none; }
   </style>
 </head>
-<body class="text-white font-sans flex flex-col items-center justify-center h-screen space-y-8">
+<body class="text-white font-sans px-6 py-10">
 
-  <!-- العنوان -->
-  <h1 class="text-4xl font-bold text-indigo-400">لتقديم على عمل أو خدمة</h1>
-  <p class="text-lg text-gray-300">يمكنك التواصل معنا عبر الواتساب</p>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">لتقديم على خدمة</h1>
 
-  <!-- زر تواصل معنا -->
-  <div class="bg-gray-800 p-6 rounded-2xl card text-center">
+  <form id="adForm" class="max-w-xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-lg space-y-4">
+    <input type="text" id="name" placeholder="الاسم" required class="w-full p-3 rounded-lg text-black">
+    <input type="file" id="image" accept="image/*" required class="w-full p-3 rounded-lg bg-white text-black">
+    <input type="text" id="price" placeholder="السعر" required class="w-full p-3 rounded-lg text-black">
+    <input type="text" id="phone" placeholder="رقم الواتساب" required class="w-full p-3 rounded-lg text-black">
 
+    <!-- اختيار نوع الخدمة -->
+    <select id="service" required class="w-full p-3 rounded-lg text-black">
+      <option value="">اختر نوع الخدمة</option>
+      <option value="تصاميم الجرافيك">تصاميم الجرافيك</option>
+      <option value="مونتاج الفيديوهات">مونتاج الفيديوهات</option>
+      <option value="تسويق المنتجات">تسويق المنتجات</option>
+    </select>
 
-    <!-- القائمة -->
-    <div id="dropdownMenu" class="dropdown mt-4 flex flex-col space-y-2">
-      <a href="https://wa.me/201008167402" target="_blank" class="w-64 py-3 bg-green-600 hover:bg-green-700 rounded-xl text-white font-semibold">التقديم من هنا</a>
-    </div>
-  </div>
+    <!-- اختيار الفئة الفرعية -->
+    <select id="subCategory" required class="w-full p-3 rounded-lg text-black">
+      <option value="">اختر الفئة</option>
+    </select>
+
+    <button type="submit" class="w-full p-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg">إرسال الإعلان</button>
+  </form>
+
+  <p id="successMsg" class="text-center text-green-400 mt-6 hidden">✅ تم إضافة الإعلان بنجاح!</p>
 
   <script>
-    function toggleDropdown() {
-      const menu = document.getElementById('dropdownMenu');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    }
+    const serviceSelect = document.getElementById("service");
+    const subCategorySelect = document.getElementById("subCategory");
+    const adForm = document.getElementById("adForm");
+    const successMsg = document.getElementById("successMsg");
+
+    const categories = {
+      "تصاميم الجرافيك": [
+        "تصميم لوجوهات",
+        "تصاميم هندسية",
+        "إعلانات Poster",
+        "تصميم هوية شخصية",
+        "تصميم صور مصغرة",
+        "تصميم منيو مطاعم أو مولات",
+        "خدمات ضبط الصورة / تصميم CV",
+        "تصميم دعوات لحفلات أو أفراح"
+      ],
+      "مونتاج الفيديوهات": [
+        "مونتاج الفيديوهات",
+        "تصميم فيديوهات إعلانية",
+        "تصميم فيديوهات بالذكاء الاصطناعي",
+        "تصميم الفيديوهات من الصوت أو النص"
+      ],
+      "تسويق المنتجات": [
+        "إدارة حملات تسويق",
+        "إعلانات ممولة",
+        "تصميم محتوى تسويقي"
+      ]
+    };
+
+    // تغيير الفئات حسب نوع الخدمة
+    serviceSelect.addEventListener("change", () => {
+      subCategorySelect.innerHTML = '<option value="">اختر الفئة</option>';
+      if (categories[serviceSelect.value]) {
+        categories[serviceSelect.value].forEach(cat => {
+          const option = document.createElement("option");
+          option.value = cat;
+          option.textContent = cat;
+          subCategorySelect.appendChild(option);
+        });
+      }
+    });
+
+    // رفع الإعلان
+    adForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const price = document.getElementById("price").value;
+      const phone = document.getElementById("phone").value;
+      const subCategory = document.getElementById("subCategory").value;
+      const imageFile = document.getElementById("image").files[0];
+
+      if (!imageFile) return alert("من فضلك اختر صورة");
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imageBase64 = event.target.result;
+
+        const adData = { name, price, phone, subCategory, image: imageBase64 };
+
+        const ads = JSON.parse(localStorage.getItem("ads")) || [];
+        ads.push(adData);
+        localStorage.setItem("ads", JSON.stringify(ads));
+
+        adForm.reset();
+        successMsg.classList.remove("hidden");
+
+        setTimeout(() => {
+          successMsg.classList.add("hidden");
+        }, 3000);
+      };
+      reader.readAsDataURL(imageFile);
+    });
   </script>
 
 </body>
