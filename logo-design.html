@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تصميم لوجوهات</title>
+  <title>اسم الفئة هنا</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -18,37 +17,28 @@
     }
   </style>
 </head>
-<body class="text-white font-sans px-6 py-10">
+<body class="text-white font-sans px-6 py-10">  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">اسم الفئة هنا</h1>  <div id="adsContainer" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>  <script>
+    const adsContainer = document.getElementById("adsContainer");
+    const currentCategory = "ضع اسم الفئة هنا"; // استبدل باسم الفئة الخاصة بالصفحة
 
-  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم لوجوهات</h1>
-
-  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="cardsContainer">
-    <!-- الكروت هتظهر هنا -->
-  </div>
-
-  <script>
-    const cardsContainer = document.getElementById("cardsContainer");
-    const ads = JSON.parse(localStorage.getItem("ads")) || [];
-
-    // فلترة الإعلانات الخاصة بفئة "تصميم لوجوهات"
-    const logoAds = ads.filter(ad => ad.subCategory === "تصميم لوجوهات");
-
-    if (logoAds.length === 0) {
-      cardsContainer.innerHTML = '<p class="col-span-full text-center text-gray-400">لا توجد إعلانات حتى الآن.</p>';
-    } else {
-      logoAds.forEach(ad => {
-        const card = document.createElement("div");
-        card.classList.add("bg-gray-800", "p-4", "rounded-2xl", "shadow-lg", "flex", "flex-col", "items-center");
-        card.innerHTML = `
-          <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
-          <h2 class="text-xl font-bold mb-2">${ad.name}</h2>
-          <p class="mb-2"><strong>السعر:</strong> ${ad.price} جنيه</p>
-          <button onclick="window.open('https://wa.me/${ad.phone}','_blank')" class="w-full p-2 bg-green-500 hover:bg-green-600 rounded-lg mt-2">تواصل</button>
-        `;
-        cardsContainer.appendChild(card);
+    function loadAds() {
+      const ads = JSON.parse(localStorage.getItem("ads")) || [];
+      adsContainer.innerHTML = '';
+      ads.forEach(ad => {
+        if(ad.subCategory === currentCategory){
+          const card = document.createElement('div');
+          card.className = 'bg-gray-800 p-4 rounded-2xl shadow-lg flex flex-col items-center';
+          card.innerHTML = `
+            <img src="${ad.image}" class="w-full h-48 object-cover rounded-lg mb-3">
+            <h2 class="text-xl font-bold mb-2">${ad.name}</h2>
+            <p class="mb-1">السعر: ${ad.price}</p>
+            <button onclick="window.location.href='https://wa.me/${ad.phone}'" class="mt-2 w-full p-2 bg-indigo-600 rounded-lg hover:bg-indigo-700">تواصل</button>
+          `;
+          adsContainer.appendChild(card);
+        }
       });
     }
-  </script>
 
-</body>
+    loadAds();
+  </script></body>
 </html>
