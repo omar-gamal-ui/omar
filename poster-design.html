@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">تصميم poster</title>
+  <title>إعلانات Poster</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -20,38 +20,33 @@
 </head>
 <body class="text-white font-sans px-6 py-10">
 
-  <h1 id="pageTitleHeader" class="text-3xl font-bold text-indigo-400 text-center mb-10">اسم الفئة</h1>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">إعلانات Poster</h1>
 
-  <div id="adsContainer" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
   <script>
-    /********* عدل هنا باسم الفئة المطلوبة *********/
-    const subCategory = ضع اسم الفئة هنا"; // مثال: "تصميم بوستر"ا"
-
     const adsContainer = document.getElementById("adsContainer");
-
-    // تحديث عنوان الصفحة تلقائي
-    document.getElementById("pageTitle").textContent = subCategory;
-    document.getElementById("pageTitleHeader").textContent = subCategory;
+    const currentCategory = "إعلانات Poster"; // الفئة اللي تعرضها الصفحة
 
     // جلب الإعلانات من localStorage
     const ads = JSON.parse(localStorage.getItem("ads")) || [];
 
-    // فلترة الإعلانات حسب الفئة
-    const filteredAds = ads.filter(ad => ad.subCategory === subCategory);
+    // تصفية الإعلانات الخاصة بالفئة
+    const filteredAds = ads.filter(ad => ad.subCategory === currentCategory);
 
+    // عرض كل إعلان في كرت
     filteredAds.forEach(ad => {
-      const card = document.createElement("div");
-      card.className = "bg-gray-800 p-4 rounded-2xl shadow-lg flex flex-col items-center space-y-3";
+      const adCard = document.createElement("div");
+      adCard.className = "bg-gray-800 rounded-2xl p-4 shadow-lg flex flex-col items-center text-center";
 
-      card.innerHTML = `
-        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-lg">
-        <h2 class="font-bold text-lg text-indigo-300">${ad.name}</h2>
-        <p>السعر: ${ad.price}</p>
-        <button onclick="window.open('https://wa.me/${ad.phone}','_blank')" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg">تواصل</button>
+      adCard.innerHTML = `
+        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h2 class="font-bold text-xl mb-2">${ad.name}</h2>
+        <p class="mb-2">السعر: ${ad.price}</p>
+        <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700">تواصل</a>
       `;
 
-      adsContainer.appendChild(card);
+      adsContainer.appendChild(adCard);
     });
   </script>
 
