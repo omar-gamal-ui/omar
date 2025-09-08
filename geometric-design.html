@@ -2,46 +2,54 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تصاميم هندسية</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-body {
-  background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تصميم لوجوهات</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
 </head>
 <body class="text-white font-sans px-6 py-10">
 
-<h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصاميم هندسية</h1>
-<div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم لوجوهات</h1>
 
-<script>
-const subCategory = "تصاميم هندسية";
-const adsContainer = document.getElementById("adsContainer");
-const ads = JSON.parse(localStorage.getItem("ads")) || [];
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="cardsContainer">
+    <!-- الكروت هتظهر هنا -->
+  </div>
 
-ads.forEach(ad => {
-  if (ad.subCategory === subCategory) {
-    const card = document.createElement("div");
-    card.className = "bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col items-center";
-    card.innerHTML = `
-      <img src="${ad.image}" class="w-full h-48 object-cover rounded-lg mb-3">
-      <h2 class="text-xl font-bold mb-1">${ad.name}</h2>
-      <p>السعر: ${ad.price}</p>
-      <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">تواصل</a>
-    `;
-    adsContainer.appendChild(card);
-  }
-});
-</script>
+  <script>
+    const cardsContainer = document.getElementById("cardsContainer");
+    const ads = JSON.parse(localStorage.getItem("ads")) || [];
+
+    // فلترة الإعلانات الخاصة بفئة "تصميم لوجوهات"
+    const logoAds = ads.filter(ad => ad.subCategory === "تصميم لوجوهات");
+
+    if (logoAds.length === 0) {
+      cardsContainer.innerHTML = '<p class="col-span-full text-center text-gray-400">لا توجد إعلانات حتى الآن.</p>';
+    } else {
+      logoAds.forEach(ad => {
+        const card = document.createElement("div");
+        card.classList.add("bg-gray-800", "p-4", "rounded-2xl", "shadow-lg", "flex", "flex-col", "items-center");
+        card.innerHTML = `
+          <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+          <h2 class="text-xl font-bold mb-2">${ad.name}</h2>
+          <p class="mb-2"><strong>السعر:</strong> ${ad.price} جنيه</p>
+          <button onclick="window.open('https://wa.me/${ad.phone}','_blank')" class="w-full p-2 bg-green-500 hover:bg-green-600 rounded-lg mt-2">تواصل</button>
+        `;
+        cardsContainer.appendChild(card);
+      });
+    }
+  </script>
+
 </body>
 </html>
