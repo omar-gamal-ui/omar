@@ -3,38 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>إضافة إعلان</title>
+  <title>تقديم على خدمة</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white p-6">
+<body class="text-white font-sans px-6 py-10">
 
-  <h1 class="text-3xl font-bold text-center mb-6">إضافة إعلان جديد</h1>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">لتقديم على خدمة</h1>
 
-  <form id="adForm" class="bg-gray-800 p-6 rounded-lg space-y-4 max-w-lg mx-auto">
-    <input type="text" id="name" placeholder="الاسم" required class="w-full p-3 rounded text-black">
-    <input type="file" id="image" accept="image/*" required class="w-full p-3 bg-white text-black">
-    <input type="text" id="price" placeholder="السعر" required class="w-full p-3 rounded text-black">
-    <input type="text" id="phone" placeholder="رقم الواتساب" required class="w-full p-3 rounded text-black">
+  <form id="adForm" class="max-w-xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-lg space-y-4">
+    <input type="text" id="name" placeholder="الاسم" required class="w-full p-3 rounded-lg text-black">
+    <input type="file" id="image" accept="image/*" required class="w-full p-3 rounded-lg bg-white text-black">
+    <input type="text" id="price" placeholder="السعر" required class="w-full p-3 rounded-lg text-black">
+    <input type="text" id="phone" placeholder="رقم الواتساب" required class="w-full p-3 rounded-lg text-black">
 
-    <select id="subCategory" required class="w-full p-3 rounded text-black">
-      <option value="">اختر الفئة</option>
-      <option value="تصميم لوجوهات">تصميم لوجوهات</option>
-      <option value="تصاميم هندسية">تصاميم هندسية</option>
-      <option value="إعلانات Poster">إعلانات Poster</option>
+    <!-- اختيار نوع الخدمة -->
+    <select id="service" required class="w-full p-3 rounded-lg text-black">
+      <option value="">اختر نوع الخدمة</option>
+      <option value="تصاميم الجرافيك">تصاميم الجرافيك</option>
       <option value="مونتاج الفيديوهات">مونتاج الفيديوهات</option>
-      <option value="تصميم فيديوهات إعلانية">تصميم فيديوهات إعلانية</option>
+      <option value="تسويق المنتجات">تسويق المنتجات</option>
     </select>
 
-    <button type="submit" class="w-full bg-indigo-600 p-3 rounded">إضافة الإعلان</button>
+    <!-- اختيار الفئة الفرعية -->
+    <select id="subCategory" required class="w-full p-3 rounded-lg text-black">
+      <option value="">اختر الفئة</option>
+    </select>
+
+    <button type="submit" class="w-full p-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg">إرسال الإعلان</button>
   </form>
 
-  <p id="successMsg" class="text-green-400 text-center mt-4 hidden">✅ تم إضافة الإعلان بنجاح</p>
+  <p id="successMsg" class="text-center text-green-400 mt-6 hidden">✅ تم إضافة الإعلان بنجاح!</p>
 
   <script>
-    const form = document.getElementById("adForm");
+    const serviceSelect = document.getElementById("service");
+    const subCategorySelect = document.getElementById("subCategory");
+    const adForm = document.getElementById("adForm");
     const successMsg = document.getElementById("successMsg");
 
-    form.addEventListener("submit", (e) => {
+    const categories = {
+      "تصاميم الجرافيك": [
+        "تصميم لوجوهات",
+        "تصاميم هندسية",
+        "إعلانات Poster",
+        "تصميم هوية شخصية",
+        "تصميم صور مصغرة",
+        "تصميم منيو مطاعم أو مولات",
+        "خدمات ضبط الصورة / تصميم CV",
+        "تصميم دعوات لحفلات أو أفراح"
+      ],
+      "مونتاج الفيديوهات": [
+        "مونتاج الفيديوهات",
+        "تصميم فيديوهات إعلانية",
+        "تصميم فيديوهات بالذكاء الاصطناعي",
+        "تصميم الفيديوهات من الصوت أو النص"
+      ],
+      "تسويق المنتجات": [
+        "إدارة حملات تسويق",
+        "إعلانات ممولة",
+        "تصميم محتوى تسويقي"
+      ]
+    };
+
+    // تغيير الفئات حسب نوع الخدمة
+    serviceSelect.addEventListener("change", () => {
+      subCategorySelect.innerHTML = '<option value="">اختر الفئة</option>';
+      if (categories[serviceSelect.value]) {
+        categories[serviceSelect.value].forEach(cat => {
+          const option = document.createElement("option");
+          option.value = cat;
+          option.textContent = cat;
+          subCategorySelect.appendChild(option);
+        });
+      }
+    });
+
+    // رفع الإعلان
+    adForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const name = document.getElementById("name").value;
@@ -43,19 +99,24 @@
       const subCategory = document.getElementById("subCategory").value;
       const imageFile = document.getElementById("image").files[0];
 
+      if (!imageFile) return alert("من فضلك اختر صورة");
+
       const reader = new FileReader();
       reader.onload = function(event) {
         const imageBase64 = event.target.result;
 
-        const ad = { name, price, phone, subCategory, image: imageBase64 };
+        const adData = { name, price, phone, subCategory, image: imageBase64 };
 
-        let ads = JSON.parse(localStorage.getItem("ads")) || [];
-        ads.push(ad);
+        const ads = JSON.parse(localStorage.getItem("ads")) || [];
+        ads.push(adData);
         localStorage.setItem("ads", JSON.stringify(ads));
 
-        form.reset();
+        adForm.reset();
         successMsg.classList.remove("hidden");
-        setTimeout(() => successMsg.classList.add("hidden"), 3000);
+
+        setTimeout(() => {
+          successMsg.classList.add("hidden");
+        }, 3000);
       };
       reader.readAsDataURL(imageFile);
     });
