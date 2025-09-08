@@ -3,71 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خدمات ضبط الصور</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-
+  <title>تصميم دعوات</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="text-white font-sans px-6 py-10">
 
-  <!-- عنوان الصفحة -->
-  <section class="text-center py-10">
-    <h1 class="text-3xl md:text-4xl font-bold text-indigo-400">خدمات ظبط الصور والcv</h1>
-    <p class="mt-3 text-gray-300">اختر انسب عرض لك</p>
-  </section>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم دعوات لحفلات أو أفراح</h1>
 
-  <!-- Cards -->
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-20 pb-20">
+  <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-    <!-- Card 1 -->
-    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
-      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
-        ✨ اعرض إعلانك أو خدمتك هنا ✨
-      </div>
-      <div class="p-5 text-center">
-        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
-        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
-        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر:</span>
-        <a href="https://wa.me/201008167402" target="_blank"
-           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
-          تواصل عبر واتساب
-        </a>
-      </div>
-    </div>
+  <script>
+    const adsContainer = document.getElementById("adsContainer");
+    const currentCategory = "تصميم دعوات لحفلات أو أفراح"; // الفئة اللي تعرضها الصفحة
 
-    <!-- Card 2 -->
-    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
-      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
-        ✨ اعرض إعلانك أو خدمتك هنا ✨
-      </div>
-      <div class="p-5 text-center">
-        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
-        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
-        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر: </span>
-        <a href="https://wa.me/201008167402" target="_blank"
-           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
-          تواصل عبر واتساب
-        </a>
-      </div>
-    </div>
+    // جلب الإعلانات من localStorage
+    const ads = JSON.parse(localStorage.getItem("ads")) || [];
 
-    <!-- Card 3 -->
-    <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition">
-      <div class="h-48 flex items-center justify-center bg-gray-700 text-gray-300 text-lg">
-        ✨ اعرض إعلانك أو خدمتك هنا ✨
-      </div>
-      <div class="p-5 text-center">
-        <h3 class="text-xl font-bold mb-2">اسم مقدم الخدمة</h3>
-        <p class="text-gray-400 mb-3">وصف قصير عن الخدمة</p>
-        <span class="block text-indigo-400 font-bold text-lg mb-4">السعر:</span>
-        <a href="https://wa.me/201008167402" target="_blank"
-           class="px-5 py-2 bg-green-500 rounded-full text-white font-semibold hover:bg-green-600 transition">
-          تواصل عبر واتساب
-        </a>
-      </div>
-    </div>
+    // تصفية الإعلانات الخاصة بالفئة
+    const filteredAds = ads.filter(ad => ad.subCategory === currentCategory);
 
-  </section>
+    // عرض كل إعلان في كرت
+    filteredAds.forEach(ad => {
+      const adCard = document.createElement("div");
+      adCard.className = "bg-gray-800 rounded-2xl p-4 shadow-lg flex flex-col items-center text-center";
+
+      adCard.innerHTML = `
+        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h2 class="font-bold text-xl mb-2">${ad.name}</h2>
+        <p class="mb-2">السعر: ${ad.price}</p>
+        <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700">تواصل</a>
+      `;
+
+      adsContainer.appendChild(adCard);
+    });
+  </script>
 
 </body>
 </html>
