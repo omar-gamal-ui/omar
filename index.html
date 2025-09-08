@@ -1,126 +1,208 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تقديم على خدمة</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رُقِي for Freelance</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    direction: rtl;
+  }
+
+  header {
+    background-color: #4a148c;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .hero {
+    background: url('https://source.unsplash.com/1600x600/?freelance,work') center/cover no-repeat;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    flex-direction: column;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+    margin: 0;
+  }
+
+  .hero p {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 20px;
+  }
+
+  .service-card {
+    background-color: #e1bee7;
+    width: 250px;
+    margin: 15px;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .service-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Slider */
+  .slider-container {
+    width: 90%;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .slide img {
+    width: 80%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+
+  .slide h3 {
+    margin: 10px 0;
+  }
+
+  .slide p {
+    font-size: 16px;
+  }
+
+  .slider-buttons {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .slider-buttons button {
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .slider-buttons button:hover {
+    background-color: #6a1b9a;
+  }
+
+  footer {
+    background-color: #4a148c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .services {
+      flex-direction: column;
+      align-items: center;
     }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+
+    .slide img {
+      width: 95%;
     }
-  </style>
+  }
+</style>
 </head>
-<body class="text-white font-sans px-6 py-10">
+<body>
 
-  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">لتقديم على خدمة</h1>
+<header>
+  <h1>رُقِي for Freelance</h1>
+  <nav>
+    <a href="#services">خدماتنا</a>
+    <a href="#projects">نماذج أعمالنا</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+</header>
 
-  <form id="adForm" class="max-w-xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-lg space-y-4">
-    <input type="text" id="name" placeholder="الاسم" required class="w-full p-3 rounded-lg text-black">
-    <input type="file" id="image" accept="image/*" required class="w-full p-3 rounded-lg bg-white text-black">
-    <input type="text" id="price" placeholder="السعر" required class="w-full p-3 rounded-lg text-black">
-    <input type="text" id="phone" placeholder="رقم الواتساب" required class="w-full p-3 rounded-lg text-black">
+<section class="hero">
+  <h2>أفضل الخدمات المستقلة في مكان واحد</h2>
+  <p>تصميم، مونتاج، تطوير، وكل ما يحتاجه الفريلانسر</p>
+</section>
 
-    <!-- اختيار نوع الخدمة -->
-    <select id="service" required class="w-full p-3 rounded-lg text-black">
-      <option value="">اختر نوع الخدمة</option>
-      <option value="تصاميم الجرافيك">تصاميم الجرافيك</option>
-      <option value="مونتاج الفيديوهات">مونتاج الفيديوهات</option>
-      <option value="تسويق المنتجات">تسويق المنتجات</option>
-    </select>
+<section class="services" id="services">
+  <div class="service-card">
+    <h3>تصاميم جرافيك</h3>
+    <p>شعارات، بوسترات، واجهات، وكل أنواع الجرافيك.</p>
+  </div>
+  <div class="service-card">
+    <h3>مونتاج فيديوهات</h3>
+    <p>تحرير، تأثيرات، ألوان، إنتاج فيديوهات احترافية.</p>
+  </div>
+  <div class="service-card">
+    <h3>تطوير مواقع</h3>
+    <p>إنشاء مواقع إلكترونية، تطبيقات ويب، تصميم واجهات حديثة.</p>
+  </div>
+  <div class="service-card">
+    <h3>كتابة محتوى</h3>
+    <p>مقالات، محتوى تسويقي، نصوص احترافية للمواقع والسوشيال.</p>
+  </div>
+  <div class="service-card">
+    <h3>تصميم UI/UX</h3>
+    <p>تجربة مستخدم وواجهات تطبيقات ومواقع مبتكرة.</p>
+  </div>
+  <div class="service-card">
+    <h3>خدمات أخرى</h3>
+    <p>أي خدمات حرة أخرى يحتاجها الفريلانسر بشكل سريع واحترافي.</p>
+  </div>
+</section>
 
-    <!-- اختيار الفئة الفرعية -->
-    <select id="subCategory" required class="w-full p-3 rounded-lg text-black">
-      <option value="">اختر الفئة</option>
-    </select>
-
-    <button type="submit" class="w-full p-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg">إرسال الإعلان</button>
-  </form>
-
-  <p id="successMsg" class="text-center text-green-400 mt-6 hidden">✅ تم إضافة الإعلان بنجاح!</p>
-
-  <script>
-    const serviceSelect = document.getElementById("service");
-    const subCategorySelect = document.getElementById("subCategory");
-    const adForm = document.getElementById("adForm");
-    const successMsg = document.getElementById("successMsg");
-
-    const categories = {
-      "تصاميم الجرافيك": [
-        "تصميم لوجوهات",
-        "تصاميم هندسية",
-        "إعلانات Poster",
-        "تصميم هوية شخصية",
-        "تصميم صور مصغرة",
-        "تصميم منيو مطاعم أو مولات",
-        "خدمات ضبط الصورة / تصميم CV",
-        "تصميم دعوات لحفلات أو أفراح"
-      ],
-      "مونتاج الفيديوهات": [
-        "مونتاج الفيديوهات",
-        "تصميم فيديوهات إعلانية",
-        "تصميم فيديوهات بالذكاء الاصطناعي",
-        "تصميم الفيديوهات من الصوت أو النص"
-      ],
-      "تسويق المنتجات": [
-        "إدارة حملات تسويق",
-        "إعلانات ممولة",
-        "تصميم محتوى تسويقي"
-      ]
-    };
-
-    // تغيير الفئات حسب نوع الخدمة
-    serviceSelect.addEventListener("change", () => {
-      subCategorySelect.innerHTML = '<option value="">اختر الفئة</option>';
-      if (categories[serviceSelect.value]) {
-        categories[serviceSelect.value].forEach(cat => {
-          const option = document.createElement("option");
-          option.value = cat;
-          option.textContent = cat;
-          subCategorySelect.appendChild(option);
-        });
-      }
-    });
-
-    // رفع الإعلان
-    adForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const price = document.getElementById("price").value;
-      const phone = document.getElementById("phone").value;
-      const subCategory = document.getElementById("subCategory").value;
-      const imageFile = document.getElementById("image").files[0];
-
-      if (!imageFile) return alert("من فضلك اختر صورة");
-
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const imageBase64 = event.target.result;
-
-        const adData = { name, price, phone, subCategory, image: imageBase64 };
-
-        const ads = JSON.parse(localStorage.getItem("ads")) || [];
-        ads.push(adData);
-        localStorage.setItem("ads", JSON.stringify(ads));
-
-        adForm.reset();
-        successMsg.classList.remove("hidden");
-
-        setTimeout(() => {
-          successMsg.classList.add("hidden");
-        }, 3000);
-      };
-      reader.readAsDataURL(imageFile);
-    });
-  </script>
-
-</body>
-</html>
+<section class="slider-container" id="projects">
+  <div class="slider" id="slider">
+    <div class="slide">
