@@ -3,197 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رُقِي for freelance</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <title>إضافة إعلان</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Animate on Scroll -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    /* خلفية متدرجة متحركة */
-    body {
-      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-    /* زر العودة للأعلى */
-    #toTop {
-      position: fixed;
-      bottom: 25px;
-      left: 25px;
-      background: #6366f1;
-      color: white;
-      padding: 12px 15px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(99,102,241,0.5);
-    }
-    #toTop:hover {
-      background: #4f46e5;
-      transform: scale(1.1);
-    }
-    /* للموبايل */
-@media (max-width: 640px) {
-  .card {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-}
-
-/* للتابلت */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .card {
-    width: 48%;
-  }
-}
-
-/* للكمبيوتر */
-@media (min-width: 1025px) {
-  .card {
-    width: 30%;
-  }
-}
-
-  </style>
 </head>
-<body class="text-white font-sans">
+<body class="bg-gray-900 text-white p-6">
 
-  <!-- Navbar -->
-<!-- Navbar -->
-<header class="flex items-center justify-between p-4 bg-black/40 fixed top-0 left-0 w-full z-50">
-  <!-- اللوجو -->
-  <div class="flex items-center space-x-2">
-    <img src="images/logo.png" alt="شعار رُقِي" class="h-20 w-20 rounded-full">
-  </div>
+  <h1 class="text-3xl font-bold text-center mb-6">إضافة إعلان جديد</h1>
 
-  <!-- روابط -->
-  <nav class="space-x-4">
-    <a href="#services" class="hover:text-indigo-400">الخدمات</a>
-    <a href="#contact" class="hover:text-indigo-400">تواصل معنا</a>
-  </nav>
-</header>
+  <form id="adForm" class="bg-gray-800 p-6 rounded-lg space-y-4 max-w-lg mx-auto">
+    <input type="text" id="name" placeholder="الاسم" required class="w-full p-3 rounded text-black">
+    <input type="file" id="image" accept="image/*" required class="w-full p-3 bg-white text-black">
+    <input type="text" id="price" placeholder="السعر" required class="w-full p-3 rounded text-black">
+    <input type="text" id="phone" placeholder="رقم الواتساب" required class="w-full p-3 rounded text-black">
 
+    <select id="subCategory" required class="w-full p-3 rounded text-black">
+      <option value="">اختر الفئة</option>
+      <option value="تصميم لوجوهات">تصميم لوجوهات</option>
+      <option value="تصاميم هندسية">تصاميم هندسية</option>
+      <option value="إعلانات Poster">إعلانات Poster</option>
+      <option value="مونتاج الفيديوهات">مونتاج الفيديوهات</option>
+      <option value="تصميم فيديوهات إعلانية">تصميم فيديوهات إعلانية</option>
+    </select>
 
-  <!-- Hero Section -->
-  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
-    <h2 class="text-5xl md:text-7xl font-bold text-indigo-400 drop-shadow-lg">
-      رُقِي for freelance
-    </h2>
-    <p class="mt-4 text-lg md:text-2xl text-gray-300 max-w-2xl">
-      حيث يتحول الإبداع إلى واقع، والجمال إلى هوية بصرية متكاملة
-    </p>
-    <a href="#services" class="mt-8 px-6 py-3 bg-indigo-500 text-white rounded-full text-lg font-semibold shadow-lg hover:bg-indigo-600 transition">
-      اكتشف خدماتنا
-    </a>
-  </section>
+    <button type="submit" class="w-full bg-indigo-600 p-3 rounded">إضافة الإعلان</button>
+  </form>
 
-  <!-- Services Section -->
-  <section id="services" class="py-20 px-8 md:px-20 bg-black/40">
-    <h3 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">خدماتنا</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <p id="successMsg" class="text-green-400 text-center mt-4 hidden">✅ تم إضافة الإعلان بنجاح</p>
 
-      <!-- Graphic -->
-      <a href="graphic.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/graphic-designer-job-description.webp" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">تصاميم جرافيك 🎨</h4>
-        </div>
-      </a>
-
-      <!-- Video -->
-      <a href="video.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/images (2).jpeg" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">مونتاج فيديوهات 🎬</h4>
-        </div>
-      </a>
-
-      <!-- Request -->
-      <a href="request.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/download (2).jpeg" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">تقديم على عمل أو خدمة 📨</h4>
-        </div>
-      </a>
-
-      <!-- Notes -->
-      <a href="notes.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/unnamed.webp" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">الملاحظات 📝</h4>
-        </div>
-      </a>
-
-      <!-- Marketing -->
-      <a href="marketing.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/10-طرق-مجرّبة-تمكنك-من-تسويق-منتجات-متجرك-بفاعلية.png" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">التسويق المنتجات 📢</h4>
-        </div>
-      </a>
-
-      <!-- Web Design -->
-      <a href="web.html" class="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-500">
-        <img src="images/web-design-service.webp" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100">
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h4 class="text-2xl font-bold text-white">تصميم مواقع إلكترونية 🌐</h4>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-20 px-8 md:px-20 text-center">
-    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">من نحن؟</h3>
-    <p class="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
-      رُقِي for freelance فريق متخصص في تقديم حلول إبداعية في مجال الجرافيك والمونتاج والتسويق.
-      هدفنا هو تحويل أفكارك إلى مشاريع بصرية مؤثرة واحترافية تعكس هويتك بشكل راقٍ ومميز.
-    </p>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20 px-8 md:px-20 bg-black/40 text-center">
-    <h3 class="text-3xl md:text-4xl font-bold text-white mb-8">تواصل معنا</h3>
-    <div class="flex justify-center gap-6">
-      <a href="https://wa.me/+201008167402" target="_blank" class="text-green-400 text-3xl hover:scale-110 transition">whatsapp</a>
-      <a href="" class="text-blue-400 text-3xl hover:scale-110 transition"> facebook </a>
-      <a href="https://www.instagram.com/rokii_for_design/?igsh=MTRxbnJkMGphdDhwaA%3D%3D#https://www.instagram.com/rokii_for_design/?igsh=MTRxbnJkMGphdDhwaA%3D%3D#" target="_blank" class="text-pink-400 text-3xl hover:scale-110 transition"> instagram </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center py-6 text-gray-400 border-t border-gray-700">
-    &copy; 2025 <a href="https://wa.me/201008167402" target="_blank">Eng/Omar gamal</a> -Eng/mohanned aymen - All Rights Reserved
-  </footer>
-
-  <!-- زر العودة للأعلى -->
-  <div id="toTop">↑</div>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1000, once: true });
+    const form = document.getElementById("adForm");
+    const successMsg = document.getElementById("successMsg");
 
-    // زر العودة للأعلى
-    const toTop = document.getElementById("toTop");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        toTop.style.display = "block";
-      } else {
-        toTop.style.display = "none";
-      }
-    });
-    toTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const price = document.getElementById("price").value;
+      const phone = document.getElementById("phone").value;
+      const subCategory = document.getElementById("subCategory").value;
+      const imageFile = document.getElementById("image").files[0];
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imageBase64 = event.target.result;
+
+        const ad = { name, price, phone, subCategory, image: imageBase64 };
+
+        let ads = JSON.parse(localStorage.getItem("ads")) || [];
+        ads.push(ad);
+        localStorage.setItem("ads", JSON.stringify(ads));
+
+        form.reset();
+        successMsg.classList.remove("hidden");
+        setTimeout(() => successMsg.classList.add("hidden"), 3000);
+      };
+      reader.readAsDataURL(imageFile);
     });
   </script>
+
 </body>
 </html>
