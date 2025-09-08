@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تصميم هويه شخصيه</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تصميم الهوية الشخصية</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #1a1a1d, #111827, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
 </head>
-<body class="bg-[#1E1E2E] min-h-screen py-10 px-5">
+<body class="text-white font-sans px-6 py-10">
 
-  <!-- العنوان -->
-  <section class="text-center py-10">
-    <h1 class="text-3xl md:text-4xl font-bold text-indigo-400">تصميم هويه شخصيه</h1>
-    <p class="mt-3 text-gray-300">اختر انسب عرض لك</p>
-  </section>
-  <!-- الكروت -->
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-    
-    <!-- كارت 1 -->
-    <div class="bg-[#2A2A3B] rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-      <div class="h-48 w-full">
-        <img src="images/personal/1.jpg" alt="شغل محمد ايهاب" class="h-full w-full object-cover" />
-      </div>
-      <div class="p-4 text-center">
-        <h3 class="text-white text-lg font-bold">محمد ايهاب عمران</h3>
-        <p class="text-gray-400 text-sm mt-1">كروت شخصيه</p>
-        <p class="text-blue-400 text-md mt-2 font-semibold">السعر: 300 ج.م</p>
-        <a href="https://wa.me/201010936923" target="_blank" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded-xl shadow-md hover:bg-green-600 transition-colors">تواصل عبر واتساب</a>
-      </div>
-    </div>
+  <h1 class="text-3xl font-bold text-indigo-400 text-center mb-10">تصميم الهوية الشخصية</h1>
 
+  <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
+  <script>
+    const adsContainer = document.getElementById("adsContainer");
+    const currentCategory = "تصميم هوية شخصية"; // الفئة اللي تعرضها الصفحة
 
-  </div>
+    // جلب الإعلانات من localStorage
+    const ads = JSON.parse(localStorage.getItem("ads")) || [];
+
+    // تصفية الإعلانات الخاصة بالفئة
+    const filteredAds = ads.filter(ad => ad.subCategory === currentCategory);
+
+    // عرض كل إعلان في كرت
+    filteredAds.forEach(ad => {
+      const adCard = document.createElement("div");
+      adCard.className = "bg-gray-800 rounded-2xl p-4 shadow-lg flex flex-col items-center text-center";
+
+      adCard.innerHTML = `
+        <img src="${ad.image}" alt="صورة الإعلان" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h2 class="font-bold text-xl mb-2">${ad.name}</h2>
+        <p class="mb-2">السعر: ${ad.price}</p>
+        <a href="https://wa.me/${ad.phone}" target="_blank" class="mt-2 px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700">تواصل</a>
+      `;
+
+      adsContainer.appendChild(adCard);
+    });
+  </script>
+
 </body>
 </html>
